@@ -9,11 +9,10 @@ const UserSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     phoneNumber: { type: Number, required: true },
-    address: { type: String, required: true },
     role: {
       type: String,
       required: true,
-      enum: ["Organization", "Driver", "User"],
+      enum: ["Organization", "Driver", "Individual"],
     },
     createdAt: { type: Date, default: Date.now },
   },
