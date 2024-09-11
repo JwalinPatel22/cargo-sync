@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const TruckSchema = new mongoose.Schema({
   licensePlateNumber: { type: String, required: true, unique: true },

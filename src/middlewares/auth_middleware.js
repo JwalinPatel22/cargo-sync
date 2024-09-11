@@ -1,6 +1,6 @@
 // middleware/authenticate.js
 import jwt from "jsonwebtoken";
-import User from "../models/base_user_model"; // Base User model
+import User from "../models/base_user_model.js"; // Base User model
 
 const authenticateToken = async (req, res, next) => {
   const token = req.cookies.jwt; // Extract token from cookies

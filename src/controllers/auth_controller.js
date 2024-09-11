@@ -3,7 +3,10 @@ import User from "../models/base_user_model.js"; // Base user model
 import { Driver } from "../models/driver_model.js";
 import { Individual } from "../models/individual_model.js";
 import { Organization } from "../models/organization_model.js";
+import { Dealer } from "../models/dealer_model.js";
 import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+dotenv.config();
 
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET_KEY);
@@ -32,11 +35,14 @@ export const register = async (req, res) => {
         error: "Password is required. Please provide a password.",
       });
     }
-    if (!role || !["Organization", "Driver", "Individual"].includes(role)) {
+    if (
+      !role ||
+      !["Organization", "Driver", "Individual", "Dealer"].includes(role)
+    ) {
       return res.status(401).json({
         status: "Error",
         error:
-          "Invalid role provided. Must be one of Student, College, or Alumni.",
+          "Invalid role provided. Must be one of Driver, Organization, Individual, or Dealer.",
       });
     }
 
@@ -86,11 +92,21 @@ export const register = async (req, res) => {
           ...otherDetails,
         });
         break;
+      case "Dealer":
+        // Create an Dealer
+        user = await Dealer.create({
+          fullname,
+          email,
+          password: hashedPassword,
+          role,
+          ...otherDetails,
+        });
+        break;
       default:
         return res.status(400).json({ status: "Error", error: "Invalid role" });
     }
 
-    const token = createToken(user._id, user.fullname);
+    const token = createToken(user._id);
 
     res.cookie("jwt", token, {
       withCredentials: true,

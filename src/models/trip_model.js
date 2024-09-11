@@ -1,5 +1,4 @@
-const e = require("express");
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const TripSchema = new mongoose.Schema({
   tripRoute: {
@@ -64,3 +63,5 @@ const TripSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+export const Trip = mongoose.model("Trip", TripSchema);
