@@ -120,6 +120,7 @@ export const register = async (req, res) => {
         id: user._id,
         role: user.role,
       },
+      token,
       created: true,
     });
   } catch (err) {

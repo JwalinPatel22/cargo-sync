@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import User from "./base_user_model.js";
 
 const DriverSchema = new mongoose.Schema({
   fullname: { type: String, required: true },
@@ -10,4 +11,4 @@ const DriverSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-export const Driver = mongoose.model("Driver", DriverSchema);
+export const Driver = User.discriminator("Driver", DriverSchema);
