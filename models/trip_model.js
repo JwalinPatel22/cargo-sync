@@ -62,6 +62,11 @@ const TripSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+
+  updatedAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 export const Trip = mongoose.model("Trip", TripSchema);
