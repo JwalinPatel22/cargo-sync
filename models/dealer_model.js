@@ -2,7 +2,9 @@ import mongoose from "mongoose";
 import User from "./base_user_model.js";
 
 const DealerSchema = new mongoose.Schema({
-  address: { type: [String], required: true },
+  agencyName: { type: String, required: true },
+  registerationId: { type: String, required: true },
+  address: { type: String, required: true },
   truck: { type: [mongoose.Schema.Types.ObjectId] },
 });
 
