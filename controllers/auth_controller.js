@@ -3,7 +3,7 @@ import User from "../models/base_user_model.js"; // Base user model
 import { Driver } from "../models/driver_model.js";
 import { Individual } from "../models/individual_model.js";
 import { Organization } from "../models/organization_model.js";
-import { Dealer } from "../models/dealer_model.js";
+import { Agency } from "../models/agency_model.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 dotenv.config();
@@ -15,7 +15,7 @@ const createToken = (id) => {
 //register user
 export const register = async (req, res) => {
   try {
-    const { fullname, email, password, role, ...otherDetails } = req.body;
+    const { fullname, email, password, role, address, ...otherDetails } = req.body;
 
     // Input validations
     if (!fullname) {
@@ -37,7 +37,7 @@ export const register = async (req, res) => {
     }
     if (
       !role ||
-      !["Organization", "Driver", "Individual", "Dealer"].includes(role)
+      !["Organization", "Agency", "Individual", "Dealer"].includes(role)
     ) {
       return res.status(401).json({
         status: "Error",
@@ -69,6 +69,7 @@ export const register = async (req, res) => {
           email,
           password: hashedPassword,
           role,
+          address,
           ...otherDetails,
         });
         break;
@@ -79,6 +80,7 @@ export const register = async (req, res) => {
           email,
           password: hashedPassword,
           role,
+          address,
           ...otherDetails,
         });
         break;
@@ -89,16 +91,18 @@ export const register = async (req, res) => {
           email,
           password: hashedPassword,
           role,
+          address,
           ...otherDetails,
         });
         break;
-      case "Dealer":
+      case "Agency":
         // Create an Dealer
-        user = await Dealer.create({
+        user = await Agency.create({
           fullname,
           email,
           password: hashedPassword,
           role,
+          address,
           ...otherDetails,
         });
         break;

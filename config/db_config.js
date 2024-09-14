@@ -13,7 +13,7 @@ const connectDB = async () => {
 
     const conn = await mongoose.connect(process.env.MONGO_URL);
     console.log(
-      `Connected to MongoDB Atlas Database at ${mongoose.connection.host}`
+      `Connected to MongoDB at ${mongoose.connection.host}`
     );
   } catch (error) {
     console.error(`MongoDb ERROR : ${error}`);
