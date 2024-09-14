@@ -46,9 +46,9 @@ const TripSchema = new mongoose.Schema({
     required: true,
   },
 
-  truck: {
+  vehicle: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Truck",
+    ref: "Vehicle",
     required: true,
   },
 

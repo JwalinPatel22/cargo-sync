@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const TruckSchema = new mongoose.Schema({
+const VehicleSchema = new mongoose.Schema({
   licensePlateNumber: { type: String, required: true, unique: true },
   weightCapacity: { type: Number, required: true },
   dimensions: { type: [Number], required: true },
@@ -10,4 +10,4 @@ const TruckSchema = new mongoose.Schema({
   },
 });
 
-export const Truck = mongoose.model("Truck", TruckSchema);
+export const Vehicle = mongoose.model("Vehicle", VehicleSchema);
