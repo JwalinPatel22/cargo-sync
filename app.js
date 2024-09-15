@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import connectDB from "./config/db_config.js";
 import authRoutes from "./routes/auth_routes.js";
+import parcelRoutes from "./routes/parcel_routes.js";
 
 //Dot ENV config
 dotenv.config();
@@ -35,6 +36,7 @@ app.use(cookieParser());
 
 //ROUTES
 app.use("/", authRoutes);
+app.use("/parcels", parcelRoutes);
 
 // Define the root route
 app.get("/", (req, res) => {

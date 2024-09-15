@@ -15,7 +15,8 @@ const createToken = (id) => {
 //register user
 export const register = async (req, res) => {
   try {
-    const { fullname, email, password, role, address, ...otherDetails } = req.body;
+    const { fullname, email, password, role, address, ...otherDetails } =
+      req.body;
 
     // Input validations
     if (!fullname) {
