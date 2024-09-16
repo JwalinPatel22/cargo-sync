@@ -9,7 +9,10 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET_KEY);
+  return jwt.sign(
+    { id: User._id, role: User.role, fullname: User.fullname },
+    process.env.JWT_SECRET_KEY
+  );
 };
 
 //register user

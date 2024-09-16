@@ -22,7 +22,11 @@ const authenticateToken = async (req, res, next) => {
     }
 
     // Attach user object to request
-    req.user = user;
+    req.user = {
+      id: decodedToken.id,
+      role: decodedToken.role,
+      fullname: decodedToken.fullname,
+    };
     req.userRole = user.role; // Attach user role for role-based access control
 
     next();
