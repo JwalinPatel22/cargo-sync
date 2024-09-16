@@ -48,6 +48,27 @@ export const getParcels = async (req, res) => {
   }
 };
 
+export const getRecentParcels = async (req, res) => {
+  try {
+    // Extract user id and role from jwt token
+    const userId = req.user.id;
+    const userRole = req.user.role;
+
+    // Fetching all the parcels owned by the user that are pending or on the way
+    const parcels = await Parcel.find({
+      sender: userId,
+      senderModel: userRole,
+      status: { $in: ["Pending", "On_the_way"] },
+    }).sort({ createdAt: -1 }); // Sorting by most recent first
+
+    // Returning the list of parcels
+    res.status(200).json({ parcels });
+  } catch (error) {
+    // Handling any error during the fetch
+    res.status(500).json({ error: "Error fetching parcels", details: error });
+  }
+};
+
 export const getIndividualParcel = async (req, res) => {
   try {
     const { id } = req.params;

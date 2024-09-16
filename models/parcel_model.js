@@ -20,7 +20,9 @@ const ParcelSchema = new mongoose.Schema({
     enum: ["Individual", "Organization"],
   },
   destination: { type: String, required: true },
-  status: { type: String, enum: ["Pending", "In Transit", "Delivered"] },
+  status: { type: String, enum: ["Pending", "On_the_way", "Delivered"], required: true, default: "Pending" },
 });
+
+
 
 export const Parcel = mongoose.model("Parcel", ParcelSchema);
